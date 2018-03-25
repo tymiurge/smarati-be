@@ -1,20 +1,19 @@
-version: "2"
+version: '2'
+
+# Define the services/containers to be run
 services:
-  web:
-    build: .
-    volumes:
-      - ./:/app
+  smarati_be: #name of your service
+    build: ./ # specify the directory of the Dockerfile
     ports:
-      - "3000:3000"
+      - "3000:3000" #specify ports forwarding
     links:
-      - mongo
-  mongo:
-    image: mongo
+      - mongo_database # link this service to the database service
+    volumes:
+      - .:/usr/src/app
+    depends_on:
+      - mongo_database
+      
+  mongo_database: # name of the service
+    image: mongo # specify image to build container from
     ports:
       - "27017:27017"
-    volumes_from:
-      - mongodata
-  mongodata:
-    image: tianon/true
-    volumes:
-      - /data/db

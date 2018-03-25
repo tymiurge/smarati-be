@@ -25,3 +25,13 @@ root@42a1419a95a0:/# mongo
 ```
 to validate connection to mongodb
 
+
+# to debug 
+https://medium.com/@creynders/debugging-node-apps-in-docker-containers-through-webstorm-ae3f8efe554d
+
+# to run mongo in container
+https://gist.github.com/goliatone/5bc8289d944ee2eef7d1c73f0013eec1
+
+and better here:
+https://www.linkedin.com/pulse/persistent-mongo-storage-using-docker-matthew-dickerson
+

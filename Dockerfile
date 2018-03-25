@@ -1,8 +1,9 @@
-FROM node:argon
-RUN mkdir /app
-WORKDIR /app
-COPY package.json /app
+FROM node:boron
+WORKDIR /usr/src/app
+COPY package.json /usr/src/app
+COPY package-lock.json /usr/src/app
 RUN npm install
-COPY . /app
+RUN npm install pm2 -g
+COPY . /usr/src/app
 EXPOSE 3000
-CMD ["npm", "start"]
+CMD ["pm2-docker", "start", "process.json"]
