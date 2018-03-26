@@ -38,7 +38,7 @@ mongoose.connect('mongodb://0.0.0.0:27017/db1')
 // source: https://github.com/scotch-io/node-api/blob/master/server.js
 
 /** ROUTERS */
-const router = express.Router()
+let router = express.Router()
 
 router.use((req, res, next) => {
     console.log(`path: ${req.path}, from:${req.headers.host}, at:${req._startTime}`)
@@ -54,6 +54,8 @@ router.get(
     }
 )
 
+router = require('./app/card-box')(router)
+/*
 router.route('/cards')
     .get((req, res) => {
         res.json({status: 'ok', data: [0, 1, 2], requestType: 'get'})
@@ -63,6 +65,7 @@ router.route('/cards')
     })
 
 app.use('/api', router)
+*/
 
 /** START THE SERVER */
 app.listen(PORT, () => {
