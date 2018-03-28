@@ -1,10 +1,12 @@
 const   Card = require('./model').Model,
-        saveNewCard = require('./model').saveNew,
+        saveNewCard = require('./model').saveNewCard,
         router = require('express').Router
 
 module.exports = router => router.route('/addCard')
-    .get((req, res) => {
-        saveNew(req.body).then(() => res.send('ok'))
+    .post((req, res) => {
+        saveNewCard(req.body).then(() => {
+            res.send('ok')
+        })    
     })
 
 

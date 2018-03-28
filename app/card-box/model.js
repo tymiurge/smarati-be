@@ -2,9 +2,9 @@ var exports = module.exports = {};
 const mongoose = require('mongoose')
 
 const Schema = new mongoose.Schema({
-    _id: mongoose.Schema.Types.ObjectId,
     type: String,
-    content: mongoose.Schema.Types.Mixed,
+    //owner: mongoose.Schema.Types.ObjectId,
+    sides: mongoose.Schema.Types.Mixed,
     createdAt: Number,
     parent: mongoose.Schema.Types.ObjectId,
     tags: []
@@ -12,12 +12,28 @@ const Schema = new mongoose.Schema({
 
 const Model = mongoose.model('CardBox', Schema)
 
-module.exports = Model
-exports.saveNew = data => (new Model({
-    type: data.Type,
-    content: {
-        title: data.content.title
-    },
-    createdAt: (new Date()).getTime(),
-    parent: data.parent || null
-})).save()
+const cardFactory = {
+    box: data => (new Model({
+        type: data.type,
+        sides: {
+            front: {
+                content: data.sides.front.content
+            }
+        },
+        parent: data.parent,
+        tags: data.tags,
+        createdAt: (new Date().getTime())
+    }))
+}
+
+exports.Model = Model
+
+/**
+ * 
+ * @param {*} data 
+ * @returns promice
+ */
+exports.saveNewCard = data => {
+    const card = cardFactory[data.type](data)
+    return card.save()
+}
