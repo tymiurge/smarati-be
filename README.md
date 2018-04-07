@@ -1,3 +1,8 @@
+# to run 
+```
+node index.js
+```
+
 # connecting to mongodb inside container
 
 after running **docker-compose up** run 

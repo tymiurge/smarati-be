@@ -76,3 +76,7 @@ exports.saveNewCard = data => {
     const card = cardFactory[data.type](data)
     return card.save()
 }
+
+exports.getCardsBy = parentId => {
+    
+}
