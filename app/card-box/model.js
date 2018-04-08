@@ -77,6 +77,10 @@ exports.saveNewCard = data => {
     return card.save()
 }
 
+/**
+ * 
+ * @param {*} parentId 
+ */
 exports.getCardsBy = parentId => {
     
 }
