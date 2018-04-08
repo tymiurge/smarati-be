@@ -1,5 +1,6 @@
 var exports = module.exports = {};
 const mongoose = require('mongoose')
+const ObjectId = mongoose.Types.ObjectId
 
 const Schema = new mongoose.Schema({
     type: String,
@@ -80,7 +81,17 @@ exports.saveNewCard = data => {
 /**
  * 
  * @param {*} parentId 
+ * @return find promise
  */
 exports.getCardsBy = parentId => {
-    
+    const query ={ parentId: new ObjectId(parentId) };
+    return Model.find(query)
+}
+
+/**
+ * 
+ * @param {*} data 
+ */
+exports.updateCard = data => {
+
 }
