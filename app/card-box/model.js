@@ -48,6 +48,8 @@ const cardFactory = {
     /**
      * @param data shape of:
      *      - @common_data
+     *      - frontContent
+     *      - backContent
      *      -  
      */
     simple: data => (new Model({
@@ -84,7 +86,7 @@ exports.saveNewCard = data => {
  * @return find promise
  */
 exports.getCardsBy = parentId => {
-    const query ={ parentId: new ObjectId(parentId) };
+    const query ={ parent: new ObjectId(parentId) };
     return Model.find(query)
 }
 

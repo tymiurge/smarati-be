@@ -6,27 +6,22 @@ const   Card = require('./model').Model,
 module.exports = router => {
     /**
      * 
+     * 
      */
-    router.route('/cards/add').post((req, res) => {
-        saveNewCard(req.body).then(() => {
-            res.send('ok')
+    router.route('/card/add').post((req, res) => {
+        saveNewCard(req.body).then(queryRes => {
+            res.json(queryRes)
         })    
     })
 
     /**
      * 
      */
-    router.route('/cards/get/:parentId').get((req, res) => 
-        getCardsBy(req.body.parentId).then( queryRes => res.json(queryRes) )
-    ) 
-
-    /**
-     * 
-     */
-    router.route('/cards/update').post((res, req) => {
-
-    })
-    
+    router.route('/card/get/:parentId').get((req, res) => 
+        getCardsBy(req.params.parentId).then( queryRes => {
+            res.json(queryRes)
+        })
+    )     
 
     return router
     
