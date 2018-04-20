@@ -1,4 +1,5 @@
 const express = require('express')
+const cors = require('cors')
 const bodyParser = require('body-parser')
 const app = express()
 const morgan = require('morgan')
@@ -15,18 +16,18 @@ app.get('/saver', (req, res) => {
     //.catch(e => res.send(e))
 })
 */
-
-
 /** APP CONFIGURATION */
 
-/** log requests to the console */
-app.use(morgan('dev'))
 
 /** configure body parser */
-app.use(bodyParser.urlencoded({extended: true}))
+app.use(cors())
 app.use(bodyParser.json())
+app.use(bodyParser.urlencoded({extended: true}))
 
-const PORT = 3000;
+/** log requests to the console */
+//app.use(morgan('dev'))
+
+const PORT = 4000;
 
 /** DATABASE SETUP */
 const mongoose = require('mongoose')
@@ -45,28 +46,17 @@ router.use((req, res, next) => {
     next();
 })
 */
-
 router.get(
     '/',
-    (req, res) => {
+    (req, res, next) => {
         res.send('ok')
         //res.json({message: 'smarati api server status: OK'})
     }
 )
 
+
+
 require('./app/card-box')(router)
-
-/*
-router.route('/cards')
-    .get((req, res) => {
-        res.json({status: 'ok', data: [0, 1, 2], requestType: 'get'})
-    })
-    .post((req, res) => {
-        res.json({status: 'ok', data: [{title: 't1'}, {title: 't2'}], requestType: 'post'})
-    })
-
-app.use('/api', router)
-*/
 
 app.use('/api', router)
 
