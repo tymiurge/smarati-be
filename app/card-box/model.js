@@ -52,7 +52,7 @@ const cardFactory = {
      *      - backContent
      *      -  
      */
-    simple: data => (new Model({
+    card: data => (new Model({
         type: data.type,
         sides: {
             front: {
