@@ -2,8 +2,23 @@
 ```
 node index.js
 ```
+# Containers
 
-# connecting to mongodb inside container
+There are 2 types of the app containerization:
+- full (rest api server + mongo + data volumns)
+- db only
+
+
+
+## Full container: connecting to mongodb inside container
+
+```
+cd docker/mongo-datavol
+docker-compose up
+```
+
+
+## Full container: connecting to mongodb inside container
 
 after running **docker-compose up** run 
 ```
